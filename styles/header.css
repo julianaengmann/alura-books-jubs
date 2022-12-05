@@ -1,0 +1,160 @@
+.cabecalho__menu-hamburguer {
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/Menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+}
+
+.cabecalho {
+    background-color: var(--branco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+}
+
+.container__imagem {
+    padding: 1em;
+}
+
+.lista-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    width: 60vw;
+}
+
+/*Se o 'container__botao' estiver 'checked' (for clicado) deve procurar (~) a classe 'lista-menu' e executar os comandos abaixo*/
+.container__botao:checked ~ .lista-menu {
+    display: block;
+}
+
+/*serve pra transformar o menu na imagem branca, qnd clicado. O '>' indica que é pra procurar dentro da tag*/
+.container__botao:checked ~ .container__rotulo > .cabecalho__menu-hamburguer {
+    background-image: url(../img/MenuAberto.svg);
+}
+
+/*serve para mudar o fundo do menu pra azul qnd for clicado*/
+.container__botao:checked ~ .container__rotulo {
+    background: var(--azul-degrade);
+}
+
+.lista-menu__titulo, 
+.lista-menu__item {
+    padding: 1em;
+    background-color: var(--branco);
+}
+
+.lista-menu__titulo {
+    color: var(--laranja);
+    font-weight: 700;
+}
+
+.lista-menu__link {
+    background: var(--azul-degrade);
+    -webkit-background-clip: text; /*serve para funcionar em vários navegadores*/
+    -webkit-text-fill-color: transparent; /*serve para funcionar em vários navegadores*/
+    background-clip: text; /*aplicar a cor degradê somente onde tem texto*/
+    text-transform: uppercase;
+}
+
+.container__botao {
+    display: none; /*para retirar o checkbox ao lado do menu hamburguer*/
+}
+
+.container__titulo,
+.opcoes,
+.container__texto {
+    display: none;
+}
+
+/* screeen é uma 'media type' que se refere a tela && telas de até no mínimo 1024px de largura, ou seja, de 1024px pra cima */
+@media screen and (min-width: 1024px) {
+    .container__titulo,
+    .container__titulo--negrito{
+        font-family: var(--fonte-secundario);
+        font-size: 30px;
+    }
+
+    .container__titulo{
+        display: block;
+        font-weight: 400;
+    }
+
+    .container__titulo--negrito {
+        font-weight: 700;
+    }
+
+    .opcoes {
+        display: flex;
+    }
+
+    .opcoes__item{
+        padding: 2em 1em;
+        text-transform: uppercase;
+    }
+
+    .opcoes__link {
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .container__imagem-transparente,
+    .cabecalho__menu-hamburguer {
+        display: none;
+    }
+
+    /*Se o 'opcoes__botao' estiver 'checked' (for clicado) deve procurar (~) a classe 'lista-menu' e executar os comandos abaixo*/
+    .opcoes__botao:checked ~ .lista-menu {
+        display: block;
+        width: auto;
+    }
+
+    .opcoes__botao {
+        display: none;
+    }
+
+    /*quando input estiver checked, procurar (~) pelo rótulo e dentro (>) ele vai encotrar o item e fazer as alterações abaixo*/
+    .opcoes__botao:checked ~ .opcoes__rotulo > .opcoes__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+
+    /*quando o mouse passar por cima (hover) procurar dentro (>) o item (lista-menu__link) e faça as alterações abaixo*/
+    .lista-menu__item:hover > .lista-menu__link {
+        -webkit-text-fill-color: var(--branco);
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 1728px) {
+    .container__link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--preto);
+    }
+
+    .cabecalho {
+        padding: 0 2em;
+    }
+
+    .opcoes {
+        margin-right: auto; /*automaticamente preenche o lado direito da margem, empurrando o conteúdo pra esquerda*/
+    }
+
+    .container__texto {
+        display: block;
+    }
+}
